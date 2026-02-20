@@ -1,73 +1,151 @@
-# Welcome to your Lovable project
+# DiarioDeHierro - Gym Tracker
 
-## Project info
+Aplicación web para tracking de entrenamientos con backend en Python (FastAPI) y frontend en Astro.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Características
 
-## How can I edit this code?
+- Registro e inicio de sesión de usuarios
+- Creación, edición y eliminación de entrenamientos
+- Gestión de ejercicios con series, repeticiones y peso
+- Diseño responsive con TailwindCSS
+- Autenticación con JWT
 
-There are several ways of editing your application.
+## Tecnologías
 
-**Use Lovable**
+### Backend
+- **FastAPI** - Framework web de Python
+- **SQLAlchemy** - ORM para base de datos
+- **PostgreSQL/SQLite** - Base de datos
+- **JWT** - Autenticación
+- **Pydantic** - Validación de datos
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### Frontend
+- **Astro** - Framework web moderno
+- **TypeScript** - Tipado estático
+- **TailwindCSS** - Framework CSS
+- **JavaScript vanilla** - Interactividad
 
-Changes made via Lovable will be committed automatically to this repo.
+## Estructura del Proyecto
 
-**Use your preferred IDE**
+```
+DiarioDeHierro_Astro_Python/
+├── backend/                 # Backend FastAPI
+│   ├── app/
+│   │   ├── models/         # Modelos de base de datos
+│   │   ├── schemas/        # Esquemas Pydantic
+│   │   ├── routers/        # Endpoints de la API
+│   │   ├── utils/          # Utilidades (auth, etc.)
+│   │   └── config.py       # Configuración
+│   ├── main.py            # Aplicación principal
+│   └── requirements.txt   # Dependencias Python
+├── frontend/               # Frontend Astro
+│   ├── src/
+│   │   ├── layouts/       # Layouts de Astro
+│   │   └── pages/         # Páginas de la aplicación
+│   ├── astro.config.mjs   # Configuración de Astro
+│   ├── package.json       # Dependencias Node.js
+│   └── tailwind.config.mjs # Configuración de Tailwind
+└── README.md              # Este archivo
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Instalación y Ejecución
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerrequisitos
 
-Follow these steps:
+- Python 3.8+
+- Node.js 18+
+- npm o yarn
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Backend
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. Navegar al directorio del backend:
+```bash
+cd backend
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. Crear entorno virtual:
+```bash
+python -m venv venv
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Windows
+venv\Scripts\activate
+
+# Linux/Mac
+source venv/bin/activate
+```
+
+3. Instalar dependencias:
+```bash
+pip install -r requirements.txt
+```
+
+4. Iniciar el servidor:
+```bash
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+La API estará disponible en `http://localhost:8000`
+
+### Frontend
+
+1. Navegar al directorio del frontend:
+```bash
+cd frontend
+```
+
+2. Instalar dependencias:
+```bash
+npm install
+```
+
+3. Iniciar el servidor de desarrollo:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+La aplicación estará disponible en `http://localhost:4321`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Uso
 
-**Use GitHub Codespaces**
+1. **Registro**: Accede a `/auth` y crea una cuenta nueva
+2. **Login**: Inicia sesión con tus credenciales
+3. **Dashboard**: Visualiza tus entrenamientos en `/dashboard`
+4. **Crear Entrenamiento**: Añade nuevos entrenamientos en `/workout/new`
+5. **Editar Entrenamiento**: Modifica entrenamientos existentes en `/workout/[id]`
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Endpoints de la API
 
-## What technologies are used for this project?
+### Autenticación
+- `POST /api/auth/register` - Registro de usuario
+- `POST /api/auth/login` - Inicio de sesión
+- `GET /api/auth/me` - Obtener usuario actual
 
-This project is built with:
+### Entrenamientos
+- `GET /api/workouts` - Listar entrenamientos del usuario
+- `POST /api/workouts` - Crear nuevo entrenamiento
+- `GET /api/workouts/{id}` - Obtener entrenamiento específico
+- `PUT /api/workouts/{id}` - Actualizar entrenamiento
+- `DELETE /api/workouts/{id}` - Eliminar entrenamiento
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Variables de Entorno
 
-## How can I deploy this project?
+Opcionalmente puedes crear un archivo `.env` en el directorio `backend/`:
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+```env
+DATABASE_URL=sqlite:///./diariodehierro.db
+SECRET_KEY=tu-clave-secreta-aqui
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
 
-## Can I connect a custom domain to my Lovable project?
+## Contribuir
 
-Yes, you can!
+1. Fork del repositorio
+2. Crear una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit de los cambios (`git commit -am 'Añadir nueva funcionalidad'`)
+4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
+5. Crear un Pull Request
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Licencia
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Este proyecto está bajo la Licencia MIT.

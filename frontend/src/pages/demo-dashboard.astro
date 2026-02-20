@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="DiarioDeHierro - Demo Dashboard">
+	<div class="min-h-screen bg-gray-900 py-8">
+		<div class="max-w-6xl mx-auto">
+			<div class="flex justify-between items-center mb-8">
+				<h1 class="text-4xl font-bold text-primary-500">Mis Entrenamientos (Demo)</h1>
+				<div class="flex space-x-4">
+					<a href="/demo" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+						← Volver a Demo
+					</a>
+					<a href="/demo-workout" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+						Nuevo Entrenamiento
+					</a>
+				</div>
+			</div>
+			
+			<div class="bg-gray-800 border border-gray-700 p-6 rounded-lg mb-6">
+				<h2 class="text-xl font-semibold text-gray-200 mb-4">📊 Estadísticas del Mes</h2>
+				<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+					<div class="bg-gray-700 p-4 rounded-lg border border-gray-600">
+						<div class="text-3xl font-bold text-primary-500">12</div>
+						<div class="text-gray-400">Entrenamientos</div>
+					</div>
+					<div class="bg-gray-700 p-4 rounded-lg border border-gray-600">
+						<div class="text-3xl font-bold text-primary-500">48</div>
+						<div class="text-gray-400">Ejercicios Totales</div>
+					</div>
+					<div class="bg-gray-700 p-4 rounded-lg border border-gray-600">
+						<div class="text-3xl font-bold text-primary-500">8.5</div>
+						<div class="text-gray-400">Horas Totales</div>
+					</div>
+					<div class="bg-gray-700 p-4 rounded-lg border border-gray-600">
+						<div class="text-3xl font-bold text-primary-500">2,450</div>
+						<div class="text-gray-400">kg Levantados</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="grid gap-6">
+				<div class="bg-gray-800 border border-gray-700 p-6 rounded-lg">
+					<div class="flex justify-between items-start mb-4">
+						<div>
+							<h3 class="text-xl font-semibold text-gray-200">Entrenamiento de Fuerza</h3>
+							<p class="text-gray-400">15 Ene 2024</p>
+						</div>
+						<div class="space-x-2">
+							<a href="/demo-workout-edit" class="text-primary-500 hover:text-primary-400">Editar</a>
+							<button class="text-red-500 hover:text-red-400">Eliminar</button>
+						</div>
+					</div>
+					<div class="space-y-2">
+						<h4 class="font-semibold text-gray-300">Ejercicios:</h4>
+						<div class="space-y-2">
+							<div class="flex justify-between items-center bg-gray-700 p-3 rounded border border-gray-600">
+								<span class="font-medium text-gray-200">Press de Banca</span>
+								<span class="text-gray-400">4 series × 10 reps @ 80kg</span>
+							</div>
+							<div class="flex justify-between items-center bg-gray-700 p-3 rounded border border-gray-600">
+								<span class="font-medium text-gray-200">Sentadillas</span>
+								<span class="text-gray-400">3 series × 12 reps @ 40kg</span>
+							</div>
+							<div class="flex justify-between items-center bg-gray-700 p-3 rounded border border-gray-600">
+								<span class="font-medium text-gray-200">Remo con Mancuernas</span>
+								<span class="text-gray-400">3 series × 8 reps @ 50kg</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bg-gray-800 border border-gray-700 p-6 rounded-lg">
+					<div class="flex justify-between items-start mb-4">
+						<div>
+							<h3 class="text-xl font-semibold text-gray-200">Entrenamiento Full Body</h3>
+							<p class="text-gray-400">18 Ene 2024</p>
+						</div>
+						<div class="space-x-2">
+							<a href="/demo-workout-edit" class="text-primary-500 hover:text-primary-400">Editar</a>
+							<button class="text-red-500 hover:text-red-400">Eliminar</button>
+						</div>
+					</div>
+					<div class="space-y-2">
+						<h4 class="font-semibold text-gray-300">Ejercicios:</h4>
+						<div class="space-y-2">
+							<div class="flex justify-between items-center bg-gray-700 p-3 rounded border border-gray-600">
+								<span class="font-medium text-gray-200">Flexiones</span>
+								<span class="text-gray-400">3 series × 15 reps @ 0kg</span>
+							</div>
+							<div class="flex justify-between items-center bg-gray-700 p-3 rounded border border-gray-600">
+								<span class="font-medium text-gray-200">Plancha</span>
+								<span class="text-gray-400">3 series × 60 seg @ 0kg</span>
+							</div>
+							<div class="flex justify-between items-center bg-gray-700 p-3 rounded border border-gray-600">
+								<span class="font-medium text-gray-200">Zancadas</span>
+								<span class="text-gray-400">3 series × 10 reps @ 0kg</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bg-gray-800 border border-gray-700 p-6 rounded-lg">
+					<div class="flex justify-between items-start mb-4">
+						<div>
+							<h3 class="text-xl font-semibold text-gray-200">Cardio Intenso</h3>
+							<p class="text-gray-400">20 Ene 2024</p>
+						</div>
+						<div class="space-x-2">
+							<a href="/demo-workout-edit" class="text-primary-500 hover:text-primary-400">Editar</a>
+							<button class="text-red-500 hover:text-red-400">Eliminar</button>
+						</div>
+					</div>
+					<div class="space-y-2">
+						<h4 class="font-semibold text-gray-300">Ejercicios:</h4>
+						<div class="space-y-2">
+							<div class="flex justify-between items-center bg-gray-700 p-3 rounded border border-gray-600">
+								<span class="font-medium text-gray-200">Correr en Cinta</span>
+								<span class="text-gray-400">1 serie × 30 min @ 0kg</span>
+							</div>
+							<div class="flex justify-between items-center bg-gray-700 p-3 rounded border border-gray-600">
+								<span class="font-medium text-gray-200">Saltos de Cuerda</span>
+								<span class="text-gray-400">3 series × 100 reps @ 0kg</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="mt-8 text-center">
+				<p class="text-gray-400 mb-4">Esta es una versión demo. Para guardar tus entrenamientos y ver tu progreso real, crea una cuenta.</p>
+				<a href="/auth" class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors">
+					Crear Cuenta Gratis
+				</a>
+			</div>
+		</div>
+	</div>
+</Layout>

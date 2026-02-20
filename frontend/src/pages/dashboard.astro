@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="DiarioDeHierro - Dashboard">
+	<div class="py-8">
+		<div class="flex justify-between items-center mb-6">
+			<h1 class="text-3xl font-bold">Mis Entrenamientos</h1>
+			<a href="/workout/new" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+				Nuevo Entrenamiento
+			</a>
+		</div>
+		
+		<div id="workoutsList" class="grid gap-4">
+			<!-- Los entrenamientos se cargarán aquí -->
+		</div>
+		
+		<div id="loading" class="text-center py-8">
+			<p>Cargando entrenamientos...</p>
+		</div>
+		
+		<div id="emptyState" class="text-center py-8 hidden">
+			<p class="text-gray-600 mb-4">No tienes entrenamientos registrados</p>
+			<a href="/workout/new" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+				Crear Primer Entrenamiento
+			</a>
+		</div>
+	</div>
+
+	<script>
+		async function loadWorkouts() {
+			const token = localStorage.getItem('token');
+			if (!token) {
+				window.location.href = '/auth';
+				return;
+			}
+			
+			try {
+				const response = await fetch('/api/workouts', {
+					headers: {
+						'Authorization': `Bearer ${token}`
+					}
+				});
+				
+				if (response.ok) {
+					const workouts = await response.json();
+					displayWorkouts(workouts);
+				} else if (response.status === 401) {
+					localStorage.removeItem('token');
+					window.location.href = '/auth';
+				} else {
+					console.error('Error loading workouts');
+				}
+			} catch (error) {
+				console.error('Error:', error);
+			} finally {
+				document.getElementById('loading').classList.add('hidden');
+			}
+		}
+		
+		function displayWorkouts(workouts) {
+			const container = document.getElementById('workoutsList');
+			const emptyState = document.getElementById('emptyState');
+			
+			if (workouts.length === 0) {
+				emptyState.classList.remove('hidden');
+				return;
+			}
+			
+			container.innerHTML = workouts.map(workout => `
+				<div class="bg-white p-6 rounded-lg shadow-md">
+					<div class="flex justify-between items-start mb-4">
+						<div>
+							<h3 class="text-xl font-semibold">${workout.name}</h3>
+							<p class="text-gray-600">${new Date(workout.date).toLocaleDateString('es-ES')}</p>
+						</div>
+						<div class="space-x-2">
+							<a href="/workout/${workout.id}" class="text-blue-600 hover:text-blue-800">Editar</a>
+							<button onclick="deleteWorkout(${workout.id})" class="text-red-600 hover:text-red-800">Eliminar</button>
+						</div>
+					</div>
+					<div class="space-y-2">
+						<h4 class="font-semibold">Ejercicios:</h4>
+						${workout.exercises.map(exercise => `
+							<div class="flex justify-between items-center bg-gray-50 p-3 rounded">
+								<span class="font-medium">${exercise.name}</span>
+								<span class="text-gray-600">${exercise.sets} series × ${exercise.reps} reps @ ${exercise.weight}kg</span>
+							</div>
+						`).join('')}
+					</div>
+				</div>
+			`).join('');
+		}
+		
+		async function deleteWorkout(workoutId) {
+			if (!confirm('¿Estás seguro de que quieres eliminar este entrenamiento?')) {
+				return;
+			}
+			
+			const token = localStorage.getItem('token');
+			try {
+				const response = await fetch(`/api/workouts/${workoutId}`, {
+					method: 'DELETE',
+					headers: {
+						'Authorization': `Bearer ${token}`
+					}
+				});
+				
+				if (response.ok) {
+					loadWorkouts();
+				} else {
+					alert('Error al eliminar el entrenamiento');
+				}
+			} catch (error) {
+				console.error('Error:', error);
+				alert('Error de conexión');
+			}
+		}
+		
+		// Cargar entrenamientos al iniciar la página
+		loadWorkouts();
+	</script>
+</Layout>
