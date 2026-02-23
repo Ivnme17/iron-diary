@@ -2,14 +2,18 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="DiarioDeHierro - Inicio">
-	<div class="min-h-screen flex items-center justify-center bg-gray-900">
+<Layout title="DiarioDeHierro">
+	<div class="min-h-screen bg-gray-900 flex items-center justify-center">
 		<div class="text-center">
-			<h1 class="text-6xl font-bold mb-4 text-primary-500">DiarioDeHierro</h1>
-			<p class="text-xl text-gray-400 mb-12">Tu tracker personal de entrenamientos</p>
-			<div class="space-x-4">
-				<a href="/auth" class="bg-primary-600 text-white px-8 py-4 rounded-lg hover:bg-primary-700 transition-colors text-lg font-semibold">Iniciar Sesión</a>
-				<a href="/auth" class="bg-gray-700 text-white px-8 py-4 rounded-lg hover:bg-gray-600 transition-colors text-lg font-semibold">Registrarse</a>
+			<h1 class="text-6xl font-bold text-primary-500 mb-4">DiarioDeHierro</h1>
+			<p class="text-xl text-gray-400 mb-8">Tu tracker personal de entrenamientos</p>
+			<div class="space-y-4">
+				<a href="/auth" class="block bg-primary-600 text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition-colors font-semibold">
+					Iniciar Sesión
+				</a>
+				<a href="/register" class="block bg-gray-700 text-white px-8 py-3 rounded-lg hover:bg-gray-600 transition-colors font-semibold">
+					Registrarse
+				</a>
 			</div>
 		</div>
 	</div>
