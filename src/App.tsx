@@ -9,6 +9,9 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import WorkoutForm from "./pages/WorkoutForm";
 import NotFound from "./pages/NotFound";
+import DemoLanding from "./pages/DemoLanding";
+import DemoDashboard from "./pages/DemoDashboard";
+import DemoWorkoutForm from "./pages/DemoWorkoutForm";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +27,9 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/workout/:id" element={<WorkoutForm />} />
+            <Route path="/demo" element={<DemoLanding />} />
+            <Route path="/demo/dashboard" element={<DemoDashboard />} />
+            <Route path="/demo/workout" element={<DemoWorkoutForm />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
